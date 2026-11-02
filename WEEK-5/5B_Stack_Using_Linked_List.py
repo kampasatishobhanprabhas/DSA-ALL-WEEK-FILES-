@@ -1,18 +1,63 @@
-# Extracted from the program screenshot in the DSA manual.
-# Please check indentation/symbols before running.
-
-ame error [Define the class before
-reating the object
-5B). Aim: write a python program to implement the stack using the linked list. And also
-implement stack operations such as push, pop, peek,count and also display the stack
-elements.
 class Node:
-def __init_ (self, data):
-self.data = data
-self.next = None
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
 class Stack:
-def __init_ (self):
-self.top = None
-self.count = 0
-# Push operation
-pee, See
+    def __init__(self):
+        self.top = None
+
+    def push(self, data):
+        new_node = Node(data)
+        new_node.next = self.top
+        self.top = new_node
+
+    def pop(self):
+        if self.top is None:
+            print("Stack is empty")
+        else:
+            print("Popped element:", self.top.data)
+            self.top = self.top.next
+
+    def peek(self):
+        if self.top is None:
+            print("Stack is empty")
+        else:
+            print("Top element:", self.top.data)
+
+    def display(self):
+        if self.top is None:
+            print("Stack is empty")
+        else:
+            temp = self.top
+            while temp:
+                print(temp.data, end=" ")
+                temp = temp.next
+            print()
+
+
+s = Stack()
+
+while True:
+    print("\n1. Push")
+    print("2. Pop")
+    print("3. Peek")
+    print("4. Display")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        data = int(input("Enter element: "))
+        s.push(data)
+    elif choice == 2:
+        s.pop()
+    elif choice == 3:
+        s.peek()
+    elif choice == 4:
+        s.display()
+    elif choice == 5:
+        break
+    else:
+        print("Invalid choice")
