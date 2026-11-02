@@ -1,39 +1,68 @@
-# Extracted from the program screenshot in the DSA manual.
-# Please check indentation/symbols before running.
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
 
 class BST:
-def init__(self):
-Self.tree = [None] * 100
-def insert (self, data):
-i=0
-while 4 < 100:
-if self.tree(i] is None:
-self.tree(i] = data
-return
-if data < self.tree(i):
-ie2eie2
-elif data > self.tree(il:
-ia2zeie2
-else:
-return
-def inorder(self, i=0):
-Af 4 < 100 and self.tree[i] is not None:
-self. inorder (2 * i + 1)
-print (self.tree(i], end=" ")
-Self-inorder(2* i+ 2)]
-def preorder(self, i=0):
-if i < 100 and self.tree[i] is not None:
-print (self.tree[i], end=" ")
-self.preorder(2 * i + 1)
-self.preorder(2 * i + 2)
-def postorder(self, i=0):
-if i < 100 and self.tree(i] is not None:
-self.postorder(2 * i + 1)
-self.postorder(2 * i + 2)
-print (self.tree[i], end=" ")
-def count (self) :
-return sum(1 for x in self.tree if x is not None)
-def height (self, i=0):
-Af i >= 100 or self.tree[i] is None:
-return 0
-verucn 1 @ marfaei? heiahe(? * i + 1).
+    def __init__(self):
+        self.root = None
+
+    def insert(self, root, data):
+        if root is None:
+            return Node(data)
+
+        if data < root.data:
+            root.left = self.insert(root.left, data)
+        elif data > root.data:
+            root.right = self.insert(root.right, data)
+
+        return root
+
+    def inorder(self, root):
+        if root:
+            self.inorder(root.left)
+            print(root.data, end=" ")
+            self.inorder(root.right)
+
+    def preorder(self, root):
+        if root:
+            print(root.data, end=" ")
+            self.preorder(root.left)
+            self.preorder(root.right)
+
+    def postorder(self, root):
+        if root:
+            self.postorder(root.left)
+            self.postorder(root.right)
+            print(root.data, end=" ")
+
+
+bst = BST()
+
+while True:
+    print("\n1. Insert")
+    print("2. Inorder")
+    print("3. Preorder")
+    print("4. Postorder")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        data = int(input("Enter element: "))
+        bst.root = bst.insert(bst.root, data)
+    elif choice == 2:
+        bst.inorder(bst.root)
+        print()
+    elif choice == 3:
+        bst.preorder(bst.root)
+        print()
+    elif choice == 4:
+        bst.postorder(bst.root)
+        print()
+    elif choice == 5:
+        break
+    else:
+        print("Invalid choice")
