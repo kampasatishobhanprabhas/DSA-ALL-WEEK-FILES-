@@ -1,39 +1,64 @@
-# Extracted from the program screenshot in the DSA manual.
-# Please check indentation/symbols before running.
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
-ba MM
-[class Queue:
-def _init__(self, size=5):
-Belt.size = size
-self.queue = [None] * size
-self.front = -1
-self.rear = -1
-def enqueue (self, x):
-if self.rear == self.size - 1:
-print ("Queue Overflow")
-else:
-if self.front == -1:
-self.front = 0
-self.rear #= 1
-self.queue(self.rear] = x
-print (£"(x) inserted into the queue")
-def dequeue (self):
-if self.front == -1 or self.front > self.rear:
-print ("Queue Underflow")
-else:
-x = self.queue[self. front]
-self.queue[self. front] = None
-self.front += 1
-print(f"{x} deleted from the queue")
-if self.front > self.rear:
-self.front = -1
-self.rear = -1
-def peek(self) :
-if self.front == -1:
-print ("Queue is empty")
-else:
-print ("Front element:", self.queue(self.front])
-def display(self):
-if self.front == -1:
-print ("Queue is empty")
-else:
+
+class Queue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    def enqueue(self, data):
+        new_node = Node(data)
+
+        if self.rear is None:
+            self.front = self.rear = new_node
+        else:
+            self.rear.next = new_node
+            self.rear = new_node
+
+        print("Inserted:", data)
+
+    def dequeue(self):
+        if self.front is None:
+            print("Queue is empty")
+        else:
+            print("Deleted:", self.front.data)
+            self.front = self.front.next
+
+            if self.front is None:
+                self.rear = None
+
+    def display(self):
+        if self.front is None:
+            print("Queue is empty")
+        else:
+            temp = self.front
+            while temp:
+                print(temp.data, end=" ")
+                temp = temp.next
+            print()
+
+
+q = Queue()
+
+while True:
+    print("\n1. Enqueue")
+    print("2. Dequeue")
+    print("3. Display")
+    print("4. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        data = int(input("Enter element: "))
+        q.enqueue(data)
+    elif choice == 2:
+        q.dequeue()
+    elif choice == 3:
+        q.display()
+    elif choice == 4:
+        break
+    else:
+        print("Invalid choice")
