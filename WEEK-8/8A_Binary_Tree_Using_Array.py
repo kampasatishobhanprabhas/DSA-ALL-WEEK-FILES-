@@ -1,25 +1,34 @@
-# Extracted from the program screenshot in the DSA manual.
-# Please check indentation/symbols before running.
+class BinaryTree:
+    def __init__(self, size):
+        self.tree = [None] * size
+        self.size = size
 
-[class BinaryTree:
-def _init_ (self):
-Self.tree = [None] * 7
-def preorder(self, i=0):
-if i <7 and self.tree[i] is not None:
-print (self.tree[i], end="")
-self.preorder(2 * i + 1)
-self.preorder(2 * i + 2)
-def inorder(self, i=0):
-if i <7 and self.tree[i] is not None:
-self.inorder(2 * i + 1)
-print (self.tree[i], end="_")
-self.inorder(2 * i + 2)
-def postorder(self, i=0):
-if i <7 and self.tree[{i] is not None:
-self.postorder(2 * i + 1)
-self.postorder(2 * i + 2)
-print (self.tree[i], end=" ")
-def level_order (self):
-for x in self.tree:
-if x is not None:
-print (x, end="_")
+    def insert(self, data):
+        for i in range(self.size):
+            if self.tree[i] is None:
+                self.tree[i] = data
+                return
+        print("Tree is full")
+
+    def display(self):
+        print("Binary Tree:", self.tree)
+
+
+bt = BinaryTree(int(input("Enter size: ")))
+
+while True:
+    print("\n1. Insert")
+    print("2. Display")
+    print("3. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        data = int(input("Enter element: "))
+        bt.insert(data)
+    elif choice == 2:
+        bt.display()
+    elif choice == 3:
+        break
+    else:
+        print("Invalid choice")
