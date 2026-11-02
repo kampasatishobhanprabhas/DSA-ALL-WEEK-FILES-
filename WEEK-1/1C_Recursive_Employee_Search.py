@@ -1,20 +1,15 @@
-# Extracted from the program screenshot in the DSA manual.
-# Please check indentation/symbols before running.
+def search_employee(emp_list, emp_id, index) :
+     if index == len (emp list) :
+        return False
+     if emp_list [index] ==  emp_id:
 
-Condition 2: n== 0
+         return search_employee (emp_list, emp_id, index + 1)
+emp list = list (map(int, input ("Enter employee IDs: ") .split ()))
+emp_id = int (input ("Enter employee ID to search: "))
+if search_employee (emp_list, emp_id, 0):
+      print ("Employee ID found")
+else:
+     print ("Employee ID not found")
 
-« When n becomes 0, the condition n == 0 becomes True.
+return True
 
-¢ The function returns 1.
-
-¢ This | acts as the base case for the multiplication.
-
-¢ The recursive calls then return one by one.
-
-e Each returned value is multiplied by p.
-
-¢ Finally, the result is printed using print(compound_interest(p,n))
-Error table:
-1C. AIM . An Hr department stores employee IDs in a list .Develop a recursive program to
-search for a given employee ID write a recursive function to search for an employee ID in a
-list.
