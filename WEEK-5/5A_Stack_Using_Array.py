@@ -1,27 +1,83 @@
-# Extracted from the program screenshot in the DSA manual.
-# Please check indentation/symbols before running.
-
 class Stack:
-def init__(self, size):
-self.stack = [)
-self.size = size
-# Push operation
-def push(self, value):
-if len(self.stack) == self.size:
-print ("Stack Overflow")
-else:
-self.stack.append (value)
-print(value, "pushed into stack")
-# Pop operation
-def pop(self) :
-if len(self.stack) == 0:
-print ("Stack Underflow")
-else:
-value = self.stack.pop()
-print ("Popped element:", value)
-# Peek operation
-def peek(self) :
-if len(self.stack) == 0:
-print ("Stack is empty")
-else:
-print ("Top element:", self.stack[-1])
+    def __init__(self, size):
+        self.size = size
+        self.stack = [None] * size
+        self.top = -1
+
+    # Push
+    def push(self, item):
+        if self.top == self.size - 1:
+            print("Stack Overflow")
+        else:
+            self.top += 1
+            self.stack[self.top] = item
+            print(item, "pushed into stack")
+
+    # Pop
+    def pop(self):
+        if self.top == -1:
+            print("Stack Underflow")
+        else:
+            item = self.stack[self.top]
+            self.stack[self.top] = None
+            self.top -= 1
+            print(item, "popped from stack")
+
+    # Peek
+    def peek(self):
+        if self.top == -1:
+            print("Stack is empty")
+        else:
+            print("Top element:", self.stack[self.top])
+
+    # Display
+    def display(self):
+        if self.top == -1:
+            print("Stack is empty")
+        else:
+            print("Stack elements:")
+            for i in range(self.top, -1, -1):
+                print(self.stack[i])
+
+    # Count
+    def count(self):
+        print("Number of elements:", self.top + 1)
+
+
+# Main Program
+size = int(input("Enter the size of stack: "))
+s = Stack(size)
+
+while True:
+    print("\n----- STACK MENU -----")
+    print("1. Push")
+    print("2. Pop")
+    print("3. Peek")
+    print("4. Display")
+    print("5. Count")
+    print("6. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        item = int(input("Enter element to push: "))
+        s.push(item)
+
+    elif choice == 2:
+        s.pop()
+
+    elif choice == 3:
+        s.peek()
+
+    elif choice == 4:
+        s.display()
+
+    elif choice == 5:
+        s.count()
+
+    elif choice == 6:
+        print("Program terminated")
+        break
+
+    else:
+        print("Invalid choice")
